@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { Header } from "./components";
+import { Header, Body } from "./components";
 import "../index.scss";
 
 const App = () => (
   <div className="container">
     <Header />
+    <Body />
   </div>
 );
 

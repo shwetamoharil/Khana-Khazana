@@ -12,7 +12,7 @@ const Header = () => {
         </div>
         <div className="header-container__section-1__location">
           <span>Location</span>
-          <Dropdown height="30" width="30" fill={"#dc143c"} />
+          <Dropdown height="30" width="30" fill={"#ffffff"} />
         </div>
       </div>
       <div className="header-container__section-2">
