@@ -1,0 +1,89 @@
+@mixin card-text-style {
+  font-family: "Basis Grotesque Pro";
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 19px;
+  letter-spacing: -0.3px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.restaurant-main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 420px;
+  width: 350px;
+  margin: 15px;
+  cursor: pointer;
+  border: 0.5px solid rgb(249, 248, 248);
+  box-shadow: 5px 10px 8px 10px #efeeee;
+  border-radius: 15%;
+  background-color: white;
+
+  &__image {
+    height: 250px;
+    width: 100%;
+    img {
+      height: 100%;
+      width: 100%;
+      border-radius: 15%;
+    }
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    margin: 12px 0 0 20px;
+    // background-color: white;
+    // border-radius: 15%;
+    // padding: 12px;
+
+    &__name {
+      font-family: "Basis Grotesque Pro";
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 24px;
+      letter-spacing: -0.3px;
+      color: rgba(2, 6, 12, 0.75);
+      overflow: hidden;
+      width: 100%;
+      margin-bottom: 12px;
+    }
+
+    &__rating {
+      width: 100%;
+      display: flex;
+      margin-bottom: 12px;
+      &__text {
+        font-family: "Basis Grotesque Pro";
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 19px;
+      }
+    }
+
+    &__menu {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+
+      &__items {
+        @include card-text-style();
+        color: #535665;
+        margin-bottom: 8px;
+      }
+
+      &__addr {
+        @include card-text-style();
+        color: #535665;
+      }
+    }
+  }
+}
+
+.restaurant-main-container :hover {
+  transform: scale(0.95, 0.95);
+  transform-origin: center center;
+  transition: all 0.1s ease-in 0s;
+}
