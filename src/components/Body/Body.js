@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { BodyShimmer } from "../../ShimmerUI";
 import { RestaurantCard } from "./../../components";
 import "./Body.scss";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
-
+  const shimmerUIArray = new Array(8).fill(0);
   useEffect(() => {
     fetchData();
   }, []);
@@ -20,7 +21,9 @@ const Body = () => {
   return (
     <div className="main-container">
       <div className="main-container__restaurant-list">
-        {listOfRestaurants?.length > 0 && listOfRestaurants?.map((res) => <RestaurantCard key={res?.info?.id} res={res?.info} />)}
+        {listOfRestaurants?.length === 0
+          ? shimmerUIArray?.map(() => <BodyShimmer />)
+          : listOfRestaurants?.map((res) => <RestaurantCard key={res?.info?.id} res={res?.info} />)}
       </div>
     </div>
   );
