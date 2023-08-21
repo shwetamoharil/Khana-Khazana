@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Header, Body } from "./components";
-import "../index.scss";
+import "./App.scss";
 
 const App = () => (
   <div className="container">

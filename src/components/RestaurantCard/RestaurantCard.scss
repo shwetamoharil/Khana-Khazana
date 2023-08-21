@@ -3,9 +3,15 @@
   font-size: 18px;
   font-weight: 200;
   line-height: 19px;
-  letter-spacing: -0.3px;
-  overflow: hidden;
+  letter-spacing: 0.5px;
   width: 100%;
+}
+
+@mixin text-overflow-style {
+  width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .restaurant-main-container {
@@ -18,7 +24,7 @@
   cursor: pointer;
   border: 0.5px solid rgb(249, 248, 248);
   box-shadow: 5px 10px 8px 10px #efeeee;
-  border-radius: 15%;
+  border-radius: 12%;
   background-color: white;
 
   &__image {
@@ -34,21 +40,20 @@
   &__details {
     display: flex;
     flex-direction: column;
-    margin: 12px 0 0 20px;
-    // background-color: white;
-    // border-radius: 15%;
-    // padding: 12px;
+    width: 100%;
+    padding: 12px;
 
     &__name {
       font-family: "Basis Grotesque Pro";
       font-size: 18px;
       font-weight: 700;
       line-height: 24px;
-      letter-spacing: -0.3px;
+      letter-spacing: 0.5px;
       color: rgba(2, 6, 12, 0.75);
       overflow: hidden;
       width: 100%;
       margin-bottom: 12px;
+      @include text-overflow-style();
     }
 
     &__rating {
@@ -61,6 +66,10 @@
         font-weight: 700;
         line-height: 19px;
       }
+
+      &__star {
+        margin-right: 5px;
+      }
     }
 
     &__menu {
@@ -70,13 +79,15 @@
 
       &__items {
         @include card-text-style();
-        color: #535665;
+        @include text-overflow-style();
+        color: var(--text-color-secondary);
         margin-bottom: 8px;
       }
 
       &__addr {
         @include card-text-style();
-        color: #535665;
+        color: var(--text-color-secondary-dark);
+        font-weight: 400;
       }
     }
   }
