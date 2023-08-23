@@ -1,6 +1,7 @@
 import React from "react";
 import Logo from "./../../../assets/logo.jpeg";
 import { Dropdown } from "../../common";
+import { Link } from "react-router-dom";
 import "./Header.scss";
 
 const Header = () => {
@@ -17,7 +18,9 @@ const Header = () => {
       </div>
       <div className="header-container__section-2">
         <ul>
-          <li>Search</li>
+          <li>
+            <Link to="/search">Search</Link>
+          </li>
           <li>About</li>
           <li>Help</li>
           <li>Cart</li>
