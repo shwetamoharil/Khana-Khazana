@@ -49,6 +49,12 @@
       li {
         padding: 5px;
         margin: 15px;
+
+        a {
+          text-decoration: none;
+          color: var(--text-color-primary);
+          cursor: pointer;
+        }
       }
     }
   }

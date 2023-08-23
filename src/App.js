@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { Header, Body } from "./components";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Header, Body, Search } from "./components";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import "./App.scss";
 
 const App = () => (
   <div className="container">
     <Header />
-    <Body />
+    <Outlet />
   </div>
 );
 
@@ -15,6 +15,16 @@ const appRoutes = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    children: [
+      {
+        path: "/",
+        element: <Body />,
+      },
+      {
+        path: "/search",
+        element: <Search />,
+      },
+    ],
   },
 ]);
 
