@@ -1,18 +1,23 @@
+import { CDN_IMAGE_URL } from "../../utils/constants";
 import "./PopularCuisines.scss";
 
-const PopularCuisines = () => {
+const PopularCuisines = ({ popularCuisinesData }) => {
+  const popularCuisinesList = popularCuisinesData?.card?.card?.imageGridCards?.info;
+
   return (
     <div className="popular-cuisines__container">
-      <div className="popular-cuisines__container__list">
-        <div className="popular-cuisines__container__list__item">
-          <button>
-            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/rng/md/carousel/production/b4ff78ecc5b8b66f732dd06228916d65" />
-          </button>
-        </div>
-        <div className="popular-cuisines__container__list__item">
-          <button>
-            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/rng/md/carousel/production/b4ff78ecc5b8b66f732dd06228916d65" />
-          </button>
+      <div className="popular-cuisines__container__title">
+        <h3>Popular Cuisines</h3>
+      </div>
+      <div className="popular-cuisines__container__items">
+        <div className="popular-cuisines__container__items__grid">
+          {popularCuisinesList?.map((data) => (
+            <div className="popular-cuisines__container__items__grid__item" key={data?.id}>
+              <button>
+                <img src={CDN_IMAGE_URL + data?.imageId} alt="popular-cuisine" />
+              </button>
+            </div>
+          ))}
         </div>
       </div>
     </div>
