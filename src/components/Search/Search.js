@@ -1,9 +1,24 @@
+import { useEffect, useState } from "react";
 import SearchIcon from "../../common/SearchIcon/SearchIcon";
 import PopularCuisines from "./PopularCuisines";
 import RecentSearchItem from "./RecentSearchItem";
+import { RECENT_SEARCH_URL } from "../../utils/constants";
 import "./Search.scss";
 
 const Search = () => {
+  const [searchData, setSearchData] = useState([]);
+
+  useEffect(() => {
+    fetchRecentSearchData();
+  }, []);
+
+  const fetchRecentSearchData = async () => {
+    const response = await fetch(RECENT_SEARCH_URL);
+    const data = await response.json();
+    setSearchData(data?.data);
+    console.log(data);
+  };
+
   return (
     <div className="search-container">
       <div className="search-container__main">
@@ -18,17 +33,13 @@ const Search = () => {
           </form>
         </div>
         <div className="search-container__main__recent-search">
-          <h4 className="search-container__main__recent-search__title">Recent Searches</h4>
           <div className="search-container__main__recent-search__search-list">
             <RecentSearchItem />
           </div>
         </div>
         <div className="search-container__main__popular-cuisines">
-          <div>
-            <h2>Popular Cuisines</h2>
-          </div>
           <div className="search-container__main__popular-cuisines__list">
-            <PopularCuisines />
+            <PopularCuisines popularCuisinesData={searchData?.cards?.[1]} />
           </div>
         </div>
       </div>

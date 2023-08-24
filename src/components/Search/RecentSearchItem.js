@@ -1,12 +1,15 @@
 import SearchIcon from "../../common/SearchIcon/SearchIcon";
 import "./RecentSearchItem.scss";
 
-const RecentSearchItem = () => {
+const RecentSearchItem = ({ recentSearchData }) => {
   return (
     <div className="recent-search-item-container">
-      <SearchIcon width="18" height="18" />
-      <div className="recent-search-item-container__title">
-        <button className="recent-search-item-container__title__name">Item</button>
+      <h4 className="recent-search-item-container__title">Recent Searches</h4>
+      <div className="recent-search-item-container__recent-list">
+        <SearchIcon width="20" height="20" />
+        <div className="recent-search-item-container__recent-list__item">
+          <button className="recent-search-item-container__title__name">Item</button>
+        </div>
       </div>
     </div>
   );
