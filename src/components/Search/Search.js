@@ -1,4 +1,5 @@
 import SearchIcon from "../../common/SearchIcon/SearchIcon";
+import PopularCuisines from "./PopularCuisines";
 import RecentSearchItem from "./RecentSearchItem";
 import "./Search.scss";
 
@@ -22,7 +23,14 @@ const Search = () => {
             <RecentSearchItem />
           </div>
         </div>
-        <div className="search-container__main__searh-list"></div>
+        <div className="search-container__main__popular-cuisines">
+          <div>
+            <h2>Popular Cuisines</h2>
+          </div>
+          <div className="search-container__main__popular-cuisines__list">
+            <PopularCuisines />
+          </div>
+        </div>
       </div>
     </div>
   );
