@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import SearchIcon from "../../common/SearchIcon/SearchIcon";
 import PopularCuisines from "./PopularCuisines";
 import RecentSearchItem from "./RecentSearchItem";
+import { SearchShimmer } from "../../ShimmerUI";
 import { RECENT_SEARCH_URL } from "../../utils/constants";
 import "./Search.scss";
 
 const Search = () => {
-  const [searchData, setSearchData] = useState([]);
+  const [searchData, setSearchData] = useState(null);
 
   useEffect(() => {
     fetchRecentSearchData();
@@ -15,9 +16,12 @@ const Search = () => {
   const fetchRecentSearchData = async () => {
     const response = await fetch(RECENT_SEARCH_URL);
     const data = await response.json();
-    setSearchData(data?.data);
-    console.log(data);
+    // setSearchData(data?.data);
   };
+
+  if (searchData === null) {
+    return <SearchShimmer />;
+  }
 
   return (
     <div className="search-container">
