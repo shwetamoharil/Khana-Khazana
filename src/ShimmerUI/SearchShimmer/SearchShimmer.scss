@@ -12,12 +12,13 @@
     justify-content: center;
     align-items: center;
     width: 50%;
-    border: 1px solid black;
+    border: 1px solid var(--text-color-secondary-light);
     padding: 5px;
     margin-top: 3rem;
     height: calc(5vh - 10px);
 
     &__item {
+      flex: 1;
       height: 20px;
       width: 70%;
       background-color: var(--secondary-background);
