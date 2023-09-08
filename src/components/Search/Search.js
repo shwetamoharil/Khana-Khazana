@@ -16,7 +16,7 @@ const Search = () => {
   const fetchRecentSearchData = async () => {
     const response = await fetch(RECENT_SEARCH_URL);
     const data = await response.json();
-    // setSearchData(data?.data);
+    setSearchData(data?.data);
   };
 
   if (searchData === null) {
