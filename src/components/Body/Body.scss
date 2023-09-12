@@ -10,5 +10,10 @@
     display: inline-grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 32px;
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
   }
 }
