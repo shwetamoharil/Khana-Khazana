@@ -1,0 +1,26 @@
+.restaurant-menu-container {
+  width: 100%;
+  position: relative;
+  top: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__main {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__details {
+      width: 100%;
+    }
+  }
+}
+
+.line {
+  width: 100%;
+  border: none;
+  border-bottom: 1px dashed black;
+  margin-top: 1rem;
+}

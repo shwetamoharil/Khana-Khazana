@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { BodyShimmer } from "../../ShimmerUI";
 import { RestaurantCard } from "./../../components";
+import { Link } from "react-router-dom";
+
 import "./Body.scss";
 
 const Body = () => {
@@ -23,7 +25,11 @@ const Body = () => {
       <div className="main-container__restaurant-list">
         {listOfRestaurants?.length === 0
           ? shimmerUIArray?.map((val, index) => <BodyShimmer key={index} />)
-          : listOfRestaurants?.map((res) => <RestaurantCard key={res?.info?.id} res={res?.info} />)}
+          : listOfRestaurants?.map((res) => (
+              <Link to={"/menu/" + res?.info?.id} key={res?.info?.id}>
+                <RestaurantCard res={res?.info} />
+              </Link>
+            ))}
       </div>
     </div>
   );
