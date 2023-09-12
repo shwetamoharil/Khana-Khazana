@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import OfferContainer from "./OfferContainer";
 import RestaurantDetails from "./RestaurantDetails";
 import "./RestaurantMenu.scss";
 
@@ -7,6 +8,8 @@ const RestaurantMenu = () => {
   const { id } = useParams();
 
   const [resDetails, setResDetails] = useState();
+  const [offerDetails, setOfferDetails] = useState();
+
   useEffect(() => {
     getMenu();
   }, []);
@@ -18,6 +21,7 @@ const RestaurantMenu = () => {
     const data = await response.json();
     console.log(data);
     setResDetails(data?.data?.cards?.[0]?.card?.card?.info);
+    setOfferDetails(data?.data?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle?.offers);
   };
 
   return (
@@ -27,6 +31,9 @@ const RestaurantMenu = () => {
           <RestaurantDetails resDetails={resDetails} />
         </div>
         <hr className="line"></hr>
+        <div className="restaurant-menu-container__main__offers">
+          <OfferContainer offerDetails={offerDetails} />
+        </div>
       </div>
     </div>
   );
