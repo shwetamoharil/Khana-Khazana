@@ -4,12 +4,16 @@ import { Header, Body, Search, ErrorPage } from "./components";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import "./App.scss";
 import { RestaurantMenu } from "./components/RestaurantMenu";
+import { Provider } from "react-redux";
+import store from "./utils/store";
 
 const App = () => (
-  <div className="container">
-    <Header />
-    <Outlet />
-  </div>
+  <Provider store={store}>
+    <div className="container">
+      <Header />
+      <Outlet />
+    </div>
+  </Provider>
 );
 
 const appRoutes = createBrowserRouter([
