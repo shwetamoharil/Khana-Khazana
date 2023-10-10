@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Online Food ordering App",
   "scripts": {
-    "predeploy": "npm run dist",
+    "predeploy": "parcel build index.html",
     "deploy": "gh-pages -d dist",
     "start": "parcel index.html",
     "build": "parcel build index.html",
