@@ -25,11 +25,14 @@
       height: 80px;
       width: 10%;
       margin-right: 3rem;
+      cursor: pointer;
+
       img {
         width: 100%;
         object-fit: cover;
         border-radius: 50%;
         background-color: transparent;
+        padding: 5px;
       }
     }
 
@@ -59,4 +62,10 @@
       }
     }
   }
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-color-primary);
+  cursor: pointer;
 }

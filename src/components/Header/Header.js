@@ -9,11 +9,9 @@ const Header = () => {
     <div className="header-container">
       <div className="header-container__section-1">
         <div className="header-container__section-1__logo">
-          <img src={Logo} alt="logo"></img>
-        </div>
-        <div className="header-container__section-1__location">
-          <span>Location</span>
-          <Dropdown height="30" width="30" fill={"#ffffff"} />
+          <Link to="/">
+            <img src={Logo} alt="logo"></img>
+          </Link>
         </div>
       </div>
       <div className="header-container__section-2">

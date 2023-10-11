@@ -12,7 +12,7 @@ const RestaurantMenu = () => {
   const [offerDetails, setOfferDetails] = useState();
   const [menuItems, setMenuItems] = useState([]);
   const [showIndex, setShowIndex] = useState(null);
-  const [showMenu, setShowMenu] = useState(false);
+  const [menuList, setMenuList] = useState([]);
 
   useEffect(() => {
     getMenu();
@@ -28,6 +28,27 @@ const RestaurantMenu = () => {
       card?.card?.card["@type"]?.includes("ItemCategory")
     );
 
+    const dataList = filteredData?.map((item) => {
+      const arr = [];
+      if (item?.card?.card?.categories?.length > 0) {
+        let obj = {};
+        item?.card?.card?.categories?.map((card) => {
+          obj = {
+            title: card?.title,
+            itemCards: card?.itemCards,
+          };
+        });
+        return obj;
+      } else {
+        const obj = {
+          title: item?.card?.card?.title,
+          itemCards: item?.card?.card?.itemCards,
+        };
+        return obj;
+      }
+    });
+
+    setMenuList(dataList);
     setMenuItems(filteredData);
     setResDetails(data?.data?.cards?.[0]?.card?.card?.info);
     setOfferDetails(data?.data?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle?.offers);
@@ -52,11 +73,11 @@ const RestaurantMenu = () => {
           <OfferContainer offerDetails={offerDetails} />
         </div>
         <hr className="line"></hr>
-        {menuItems.map((menuItem, index) => (
+        {menuList.map((menuItem, index) => (
           <div className="restaurant-menu-container__main__menu" key={index}>
             <Accordian
-              title={menuItem?.card?.card?.title}
-              menuItems={menuItem?.card?.card?.itemCards}
+              title={menuItem?.title}
+              menuItems={menuItem?.itemCards}
               showMenu={index === showIndex ? true : false}
               setShowIndex={() => handleShowIndex(index)}
             />
