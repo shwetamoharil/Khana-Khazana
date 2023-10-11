@@ -27,7 +27,7 @@ const RestaurantMenu = () => {
     const filteredData = data?.data?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter((card) =>
       card?.card?.card["@type"]?.includes("ItemCategory")
     );
-    console.log(data?.data?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+
     setMenuItems(filteredData);
     setResDetails(data?.data?.cards?.[0]?.card?.card?.info);
     setOfferDetails(data?.data?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle?.offers);
