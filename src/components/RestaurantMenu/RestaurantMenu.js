@@ -10,6 +10,9 @@ const RestaurantMenu = () => {
 
   const [resDetails, setResDetails] = useState();
   const [offerDetails, setOfferDetails] = useState();
+  const [menuItems, setMenuItems] = useState([]);
+  const [showIndex, setShowIndex] = useState(null);
+  const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
     getMenu();
@@ -20,9 +23,22 @@ const RestaurantMenu = () => {
       `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.57034453268314&lng=73.78194741904736&restaurantId=${id}&catalog_qa=undefined&submitAction=ENTER`
     );
     const data = await response.json();
-    console.log(data);
+
+    const filteredData = data?.data?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter((card) =>
+      card?.card?.card["@type"]?.includes("ItemCategory")
+    );
+
+    setMenuItems(filteredData);
     setResDetails(data?.data?.cards?.[0]?.card?.card?.info);
     setOfferDetails(data?.data?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle?.offers);
+  };
+
+  const handleShowIndex = (index) => {
+    if (index === showIndex) {
+      setShowIndex(null);
+    } else {
+      setShowIndex(index);
+    }
   };
 
   return (
@@ -36,9 +52,16 @@ const RestaurantMenu = () => {
           <OfferContainer offerDetails={offerDetails} />
         </div>
         <hr className="line"></hr>
-        <div className="restaurant-menu-container__main__menu">
-          <Accordian />
-        </div>
+        {menuItems.map((menuItem, index) => (
+          <div className="restaurant-menu-container__main__menu" key={index}>
+            <Accordian
+              title={menuItem?.card?.card?.title}
+              menuItems={menuItem?.card?.card?.itemCards}
+              showMenu={index === showIndex ? true : false}
+              setShowIndex={() => handleShowIndex(index)}
+            />
+          </div>
+        ))}
       </div>
     </div>
   );

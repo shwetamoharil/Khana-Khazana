@@ -3,8 +3,6 @@
   "version": "1.0.0",
   "description": "Online Food ordering App",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
     "start": "parcel index.html",
     "build": "parcel build index.html",
     "test": "jest"
@@ -18,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/shwetamoharil/Khana-Khazana/issues"
   },
-  "homepage": "https://shwetamoharil.github.io/Khana-Khazana/",
+  "homepage": "https://shwetamoharil.github.io/Khana-Khazana#readme",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.9.3",
     "gh-pages": "^6.0.0",
