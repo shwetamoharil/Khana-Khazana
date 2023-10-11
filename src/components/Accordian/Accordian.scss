@@ -2,7 +2,9 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  border: 1px solid transparent;
+  background-color: var(--text-color-primary);
+  cursor: pointer;
 
   &__header {
     width: 100%;
@@ -12,13 +14,77 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 0.2rem;
 
     &__title {
       margin-left: 0.5rem;
+      color: var(--primary-color);
     }
 
     &__icon {
       margin-right: 0.5rem;
+      cursor: pointer;
+    }
+  }
+
+  &__content {
+    width: 100%;
+    display: flex;
+    border-bottom: 1px dotted grey;
+    justify-content: center;
+
+    &__description {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      margin-left: 0.5rem;
+      justify-content: center;
+
+      &__title {
+        font-size: 1.05rem;
+        font-weight: 500;
+        color: var(--primary-color);
+        word-break: break-word;
+        margin-bottom: 0.2rem;
+      }
+
+      &__price {
+        font-weight: 400;
+        color: var(--primary-color);
+        margin-bottom: 0.2rem;
+      }
+
+      &__desc {
+        margin-bottom: 0.2rem;
+        line-height: 1.3;
+        color: var(--text-color-secondary);
+        width: 70%;
+        letter-spacing: -0.3px;
+        font-size: 0.9rem;
+      }
+    }
+
+    &__image {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      width: 100px;
+      img {
+        width: 100%;
+        border-radius: 25%;
+      }
+
+      &__symbol {
+        position: absolute;
+        align-self: center;
+        bottom: 5px;
+        background-color: var(--text-color-primary);
+        border-radius: 5px;
+        width: 75%;
+        color: var(--text-color-success-primary);
+        height: 30px;
+        border: transparent;
+      }
     }
   }
 }
