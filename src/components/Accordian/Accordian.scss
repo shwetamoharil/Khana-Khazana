@@ -32,7 +32,7 @@
     display: flex;
     border-bottom: 1px dotted grey;
     justify-content: center;
-
+    padding: 5px;
     &__description {
       display: flex;
       flex-direction: column;
@@ -69,6 +69,7 @@
       display: flex;
       justify-content: center;
       width: 100px;
+      padding: 5px;
       img {
         width: 100%;
         border-radius: 25%;
