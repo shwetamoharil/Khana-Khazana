@@ -21,7 +21,9 @@ const Accordian = ({ title, menuItems, showMenu, setShowIndex }) => {
           <div className="accordian-container__content" key={item?.card?.info?.id}>
             <div className="accordian-container__content__description">
               <div className="accordian-container__content__description__title">{item?.card?.info?.name}</div>
-              <div className="accordian-container__content__description__price">{"₹ " + item?.card?.info?.defaultPrice / 100}</div>
+              <div className="accordian-container__content__description__price">
+                {`₹ ${item?.card?.info?.defaultPrice ? item?.card?.info?.defaultPrice / 100 : item?.card?.info?.price / 100}`}
+              </div>
               <div className="accordian-container__content__description__desc">{item?.card?.info?.description}</div>
             </div>
             <div className="accordian-container__content__image">
