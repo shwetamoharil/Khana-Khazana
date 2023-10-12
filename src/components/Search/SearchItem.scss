@@ -1,0 +1,40 @@
+.search-item {
+  &__main {
+    width: 100%;
+    margin: 15px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &__img-container {
+      width: 80px;
+
+      img {
+        width: 100%;
+        border-radius: 5px;
+      }
+    }
+
+    &__details {
+      display: flex;
+      flex-direction: column;
+      margin-left: 1rem;
+
+      &__name {
+        font-size: 1.05rem;
+        margin-bottom: 1px;
+      }
+
+      &__type {
+        font-size: 1rem;
+        color: #7e808c;
+      }
+    }
+  }
+}
+
+.search-item {
+  &__main:hover {
+    background-color: rgb(230, 243, 247);
+  }
+}
