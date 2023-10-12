@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import RestaurantMenuShimmer from "../../ShimmerUI/RestaurantMenuShimmer/RestaurantMenuShimmer";
 import Accordian from "../Accordian/Accordian";
 import OfferContainer from "./OfferContainer";
 import RestaurantDetails from "./RestaurantDetails";
@@ -10,7 +11,6 @@ const RestaurantMenu = () => {
 
   const [resDetails, setResDetails] = useState();
   const [offerDetails, setOfferDetails] = useState();
-  const [menuItems, setMenuItems] = useState([]);
   const [showIndex, setShowIndex] = useState(null);
   const [menuList, setMenuList] = useState([]);
 
@@ -29,7 +29,6 @@ const RestaurantMenu = () => {
     );
 
     const dataList = filteredData?.map((item) => {
-      const arr = [];
       if (item?.card?.card?.categories?.length > 0) {
         let obj = {};
         item?.card?.card?.categories?.map((card) => {
@@ -49,7 +48,6 @@ const RestaurantMenu = () => {
     });
 
     setMenuList(dataList);
-    setMenuItems(filteredData);
     setResDetails(data?.data?.cards?.[0]?.card?.card?.info);
     setOfferDetails(data?.data?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle?.offers);
   };
@@ -61,6 +59,11 @@ const RestaurantMenu = () => {
       setShowIndex(index);
     }
   };
+
+  console.log(resDetails);
+  if (resDetails === undefined) {
+    return <RestaurantMenuShimmer />;
+  }
 
   return (
     <div className="restaurant-menu-container">
