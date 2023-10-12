@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import SearchIcon from "../../common/SearchIcon/SearchIcon";
 import PopularCuisines from "./PopularCuisines";
 import RecentSearchItem from "./RecentSearchItem";
-import { SearchShimmer } from "../../ShimmerUI";
+import { SearchListShimmer, SearchShimmer } from "../../ShimmerUI";
 import { RECENT_SEARCH_URL } from "../../utils/constants";
 import { debounce } from "lodash";
 import SearchItem from "./SearchItem";
@@ -58,7 +58,7 @@ const Search = () => {
             </div>
           </form>
         </div>
-        {!searchData && (
+        {!searchData && searchText.length === 0 && (
           <>
             <div className="search-container__main__recent-search">
               <div className="search-container__main__recent-search__search-list">
@@ -72,11 +72,17 @@ const Search = () => {
             </div>
           </>
         )}
+
         {searchData && (
           <div className="search-container__main__search-list">
             {searchData?.suggestions?.map((item) => (
               <SearchItem key={item?.cloudinaryId} title={item?.text} cloudinaryId={item?.cloudinaryId} type={item?.type} />
             ))}
+          </div>
+        )}
+        {!searchData && searchText.length > 0 && (
+          <div className="search-container__main__shimmer">
+            <SearchListShimmer />
           </div>
         )}
       </div>
