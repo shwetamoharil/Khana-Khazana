@@ -1,7 +1,7 @@
 import SearchIcon from "../../common/SearchIcon/SearchIcon";
 import "./RecentSearchItem.scss";
 
-const RecentSearchItem = ({ recentSearchData }) => {
+const RecentSearchItem = () => {
   return (
     <div className="recent-search-item-container">
       <h4 className="recent-search-item-container__title">Recent Searches</h4>

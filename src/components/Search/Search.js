@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import SearchIcon from "../../common/SearchIcon/SearchIcon";
 import PopularCuisines from "./PopularCuisines";
 import RecentSearchItem from "./RecentSearchItem";
@@ -7,19 +7,31 @@ import { RECENT_SEARCH_URL } from "../../utils/constants";
 import { debounce } from "lodash";
 import SearchItem from "./SearchItem";
 import "./Search.scss";
+import CloseIcon from "../../common/CloseIcon/CloseIcon";
 
 const Search = () => {
   const [popularCuisines, setPopularCuisines] = useState(null);
   const [searchText, setSearchText] = useState("");
   const [searchData, setSearchData] = useState(null);
+  const [recentData, setRecentData] = useState(null);
+
+  const searchFn = useCallback(
+    debounce(() => fetchSearchData(), 2000),
+    [searchText]
+  );
 
   useEffect(() => {
     fetchRecentSearchData();
   }, []);
 
   useEffect(() => {
-    const searchFn = debounce(() => fetchSearchData(), 3000);
-    searchFn();
+    if (!searchText) {
+      fetchSearchData();
+    } else {
+      searchFn();
+    }
+
+    return searchFn.cancel;
   }, [searchText]);
 
   const fetchRecentSearchData = async () => {
@@ -41,6 +53,10 @@ const Search = () => {
     setSearchText(e.target.value);
   };
 
+  const handleClose = () => {
+    setSearchText("");
+  };
+
   if (popularCuisines === null) {
     return <SearchShimmer />;
   }
@@ -51,20 +67,29 @@ const Search = () => {
         <div className="search-container__main__search-input">
           <form className="search-container__main__search-input__search-form">
             <div className="search-container__main__search-input__search-form__input-box">
-              <input type="text" placeholder="Search for restaurants and food" onChange={handleSearch}></input>
+              <input type="text" placeholder="Search for restaurants and food" onChange={handleSearch} value={searchText}></input>
             </div>
-            <div className="search-container__main__search-input__search-form__search-icon">
-              <SearchIcon height="30" width="30" />
-            </div>
+            {!searchText && (
+              <div className="search-container__main__search-input__search-form__search-icon">
+                <SearchIcon height="30" width="30" />
+              </div>
+            )}
+            {searchText && (
+              <div className="search-container__main__search-input__search-form__search-icon" onClick={handleClose}>
+                <CloseIcon height="30" width="30" />
+              </div>
+            )}
           </form>
         </div>
         {!searchData && searchText.length === 0 && (
           <>
-            <div className="search-container__main__recent-search">
-              <div className="search-container__main__recent-search__search-list">
-                <RecentSearchItem />
+            {recentData && (
+              <div className="search-container__main__recent-search">
+                <div className="search-container__main__recent-search__search-list">
+                  <RecentSearchItem />
+                </div>
               </div>
-            </div>
+            )}
             <div className="search-container__main__popular-cuisines">
               <div className="search-container__main__popular-cuisines__list">
                 <PopularCuisines popularCuisinesData={popularCuisines?.cards?.[1]} />
