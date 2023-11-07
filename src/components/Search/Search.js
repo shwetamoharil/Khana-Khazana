@@ -6,8 +6,9 @@ import { SearchListShimmer, SearchShimmer } from "../../ShimmerUI";
 import { RECENT_SEARCH_URL } from "../../utils/constants";
 import { debounce } from "lodash";
 import SearchItem from "./SearchItem";
-import "./Search.scss";
 import CloseIcon from "../../common/CloseIcon/CloseIcon";
+import { NavLink } from "react-router-dom";
+import "./Search.scss";
 
 const Search = () => {
   const [popularCuisines, setPopularCuisines] = useState(null);
@@ -101,7 +102,9 @@ const Search = () => {
         {searchData && (
           <div className="search-container__main__search-list">
             {searchData?.suggestions?.map((item) => (
-              <SearchItem key={item?.cloudinaryId} title={item?.text} cloudinaryId={item?.cloudinaryId} type={item?.type} />
+              <NavLink to="/search/list" state={{ name: item?.text }} key={item?.cloudinaryId}>
+                <SearchItem title={item?.text} cloudinaryId={item?.cloudinaryId} type={item?.type} />
+              </NavLink>
             ))}
           </div>
         )}
