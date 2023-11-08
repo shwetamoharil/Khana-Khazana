@@ -1,1 +1,1 @@
-export { default as StarIcon } from "./SearchIcon";
+export { default as SearchIcon } from "./SearchIcon";
