@@ -1,4 +1,5 @@
 import { CDN_IMAGE_URL } from "../../utils/constants";
+import { StarIcon } from "../../common";
 import "./SearchCardItem.scss";
 
 const SearchCardItem = ({ details }) => {
@@ -9,7 +10,12 @@ const SearchCardItem = ({ details }) => {
       </div>
       <div className="search-card-item-container__details-container">
         <div className="search-card-item-container__details-container__name">{details?.name}</div>
-        <div className="search-card-item-container__details-container__rating">{details?.avgRating}</div>
+        <div className="search-card-item-container__details-container__rating">
+          <div className="search-card-item-container__details-container__rating__icon">
+            <StarIcon height="20" width="20" fill="#32CD32" />
+          </div>
+          {details?.avgRating}
+        </div>
         <div className="search-card-item-container__details-container__menu">{details?.cuisines?.join(",")}</div>
       </div>
     </div>

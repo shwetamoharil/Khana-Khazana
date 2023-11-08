@@ -21,6 +21,12 @@
       grid-template-columns: 50% 50%;
       row-gap: 5px;
       column-gap: 5px;
+
+      a {
+        text-decoration: none;
+        cursor: pointer;
+        color: var(--text-color-secondary);
+      }
     }
   }
 }
