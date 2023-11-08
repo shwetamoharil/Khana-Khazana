@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import SearchCardItem from "./SearchCardItem";
 import { useLocation } from "react-router-dom";
-import "./SearchList.scss";
+import { Link } from "react-router-dom";
 import RestaurantSearchListShimmer from "../../ShimmerUI/RestaurantSearchListShimmer/RestaurantSearchListShimmer";
+import "./SearchList.scss";
 
 const SearchList = () => {
   const [searchList, setSearchList] = useState(null);
@@ -21,6 +22,7 @@ const SearchList = () => {
     const filteredList = json?.data?.cards?.[1]?.groupedCard?.cardGroupMap?.DISH?.cards.filter((card) =>
       card?.card?.card?.["@type"]?.includes("Dish")
     );
+    console.log(filteredList);
     setSearchList(filteredList);
   };
 
@@ -31,7 +33,11 @@ const SearchList = () => {
           {!searchList ? (
             <RestaurantSearchListShimmer />
           ) : (
-            searchList?.map((item) => <SearchCardItem details={item?.card?.card?.restaurant?.info} key={item?.card?.card?.info?.id} />)
+            searchList?.map((item) => (
+              <Link to={"/menu/" + item?.card?.card?.restaurant?.info?.id} key={item?.card?.card?.info?.id}>
+                <SearchCardItem details={item?.card?.card?.restaurant?.info} />
+              </Link>
+            ))
           )}
         </div>
       </div>
